@@ -7,9 +7,6 @@ const {
   runLintFix,
   printMessage,
 } = require('./utils')
-const pkg = require('./package.json')
-
-const templateVersion = pkg.version
 
 const { addTestAnswers } = require('./scenarios')
 
@@ -26,10 +23,7 @@ module.exports = {
       }
 
       return options.inverse(this)
-    },
-    template_version() {
-      return templateVersion
-    },
+    }
   },
   
   prompts: {

@@ -14,9 +14,9 @@ module.exports = {
       '/api': {
         target: '{{devProxy}}',
         changeOrigin: true,
-        // changeOrigin: {
-        //   '^/api': ''
-        // }
+        changeOrigin: {
+          '^/api': 'api'
+        }
       }
     },
 

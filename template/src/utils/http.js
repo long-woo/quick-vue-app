@@ -1,9 +1,10 @@
+// import qs from 'qs'
 import Vue from 'vue'
 import Axios from 'axios'
 
 // 配置axios
-Axios.defaults.baseURL = process.env.baseURL
 Axios.defaults.timeout = 5000
+// Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
 
 // 请求拦截器
 Axios.interceptors.request.use(config => {
@@ -15,7 +16,7 @@ Axios.interceptors.request.use(config => {
   Vue.nprogress.start()
 
   if (config.method === 'post') {
-
+    // config.data = qs.stringify(config.data)
   }
 
   return config
