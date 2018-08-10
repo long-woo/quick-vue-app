@@ -5,6 +5,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 // Nprogress
 import Nprogress from 'nprogress'
 
@@ -17,6 +18,7 @@ Vue.nprogress = Vue.prototype.$nprogress = Nprogress
 new Vue({
   el: '#app',
   router,
+  store,
   {{#if_eq build "runtime"}}
   render: h => h(App)
   {{/if_eq}}
