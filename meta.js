@@ -74,10 +74,7 @@ module.exports = {
       ]
     }
   },
-  filters: {
-    '.eslintrc.js': 'lint',
-    '.eslintignore': 'lint'
-  },
+  filters: {},
   complete: function(data, { chalk }) {
     const green = chalk.green
 
