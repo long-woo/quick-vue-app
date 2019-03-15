@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const spawn = require('child_process').spawn
 
-const lintStyles = ['standard', 'airbnb']
+const lintStyles = ['standard']
 
 /**
  * Sorts dependencies in package.json alphabetically.
@@ -10,10 +10,7 @@ const lintStyles = ['standard', 'airbnb']
  * @param {object} data Data from questionnaire
  */
 exports.sortDependencies = function sortDependencies(data) {
-  const packageJsonFile = path.join(
-    data.inPlace ? '' : data.destDirName,
-    'package.json'
-  )
+  const packageJsonFile = path.join(data.inPlace ? '' : data.destDirName, 'package.json')
   const packageJson = JSON.parse(fs.readFileSync(packageJsonFile))
   packageJson.devDependencies = sortObject(packageJson.devDependencies)
   packageJson.dependencies = sortObject(packageJson.dependencies)
@@ -25,15 +22,11 @@ exports.sortDependencies = function sortDependencies(data) {
  * @param {string} cwd Path of the created project directory
  * @param {object} data Data from questionnaire
  */
-exports.installDependencies = function installDependencies(
-  cwd,
-  executable = 'npm',
-  color
-) {
+exports.installDependencies = function installDependencies(cwd, executable = 'npm', color) {
   console.log(`\n\n# ${color('Installing project dependencies ...')}`)
   console.log('# ========================\n')
   return runCommand(executable, ['install'], {
-    cwd,
+    cwd
   })
 }
 
@@ -44,18 +37,11 @@ exports.installDependencies = function installDependencies(
  */
 exports.runLintFix = function runLintFix(cwd, data, color) {
   if (data.lint && lintStyles.indexOf(data.lintConfig) !== -1) {
-    console.log(
-      `\n\n${color(
-        'Running eslint --fix to comply with chosen preset rules...'
-      )}`
-    )
+    console.log(`\n\n${color('Running eslint --fix to comply with chosen preset rules...')}`)
     console.log('# ========================\n')
-    const args =
-      data.autoInstall === 'npm'
-        ? ['run', 'lint', '--', '--fix']
-        : ['run', 'lint', '--fix']
+    const args = data.autoInstall === 'npm' ? ['run', 'lint', '--', '--fix'] : ['run', 'lint', '--fix']
     return runCommand(data.autoInstall, args, {
-      cwd,
+      cwd
     })
   }
   return Promise.resolve()
@@ -72,13 +58,9 @@ exports.printMessage = function printMessage(data, { green, yellow }) {
 
 To get started:
 
-  ${yellow(
-    `${data.inPlace ? '' : `cd ${data.destDirName}\n  `}${installMsg(
-      data
-    )}${lintMsg(data)}npm run dev`
-  )}
+  ${yellow(`${data.inPlace ? '' : `cd ${data.destDirName}\n  `}${installMsg(data)}${lintMsg(data)}npm run serve`)}
 
-Documentation can be found at https://vuejs-templates.github.io/webpack
+Documentation can be found at https://cli.vuejs.org/zh/
 `
   console.log(message)
 }
@@ -89,11 +71,7 @@ Documentation can be found at https://vuejs-templates.github.io/webpack
  * @param {Object} data Data from questionnaire.
  */
 function lintMsg(data) {
-  return !data.autoInstall &&
-    data.lint &&
-    lintStyles.indexOf(data.lintConfig) !== -1
-    ? 'npm run lint -- --fix (or for yarn: yarn run lint --fix)\n  '
-    : ''
+  return !data.autoInstall && data.lint && lintStyles.indexOf(data.lintConfig) !== -1 ? 'npm run lint -- --fix (or for yarn: yarn run lint --fix)\n  ' : ''
 }
 
 /**
@@ -122,7 +100,7 @@ function runCommand(cmd, args, options) {
         {
           cwd: process.cwd(),
           stdio: 'inherit',
-          shell: true,
+          shell: true
         },
         options
       )
