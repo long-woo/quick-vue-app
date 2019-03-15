@@ -18,6 +18,5 @@ module.exports = {
         // }
       }
     }
-  }
-  {{/if_eq}}
+  }{{/if_eq}}
 }
