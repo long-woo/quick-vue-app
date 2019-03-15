@@ -1,5 +1,5 @@
-module.exports = {
-  publicPath: '{{name}}',
+module.exports = {{{#isSubApp}}
+  publicPath: '/{{name}}/',{{/isSubApp}}
   css: {
     loaderOptions: {
       sass: {

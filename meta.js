@@ -32,7 +32,7 @@ module.exports = {
       when: 'isNotTest',
       type: 'string',
       required: true,
-      message: '项目名（应用名）：'
+      message: '项目名：'
     },
     description: {
       when: 'isNotTest',
@@ -50,6 +50,12 @@ module.exports = {
       when: 'isNotTest',
       type: 'string',
       message: 'Api 代理 url：'
+    },
+    isSubApp: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: '是否为子应用？',
+      default: 'N'
     },
     autoInstall: {
       when: 'isNotTest',
