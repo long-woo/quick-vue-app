@@ -55,7 +55,7 @@ module.exports = {
       when: 'isNotTest',
       type: 'confirm',
       message: '是否为子应用？',
-      default: 'N'
+      default: 'No'
     },
     autoInstall: {
       when: 'isNotTest',

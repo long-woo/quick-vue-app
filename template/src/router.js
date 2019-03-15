@@ -16,6 +16,10 @@ const router = new Router({
   ]
 })
 
-router.be
+router.beforeEach((to, from, next) => {
+  /* 页面拦截 */
+  
+  next()
+})
 
 export default router
