@@ -6,7 +6,7 @@ module.exports = {
         data: '@import "@/styles/variables.scss";'
       }
     }
-  }{{#if_eq devProxyUrl ""}},
+  }{{#if_neq devProxyUrl ""}},
   devServer: {
     proxy: {
       '/api': {
@@ -18,5 +18,5 @@ module.exports = {
         // }
       }
     }
-  }{{/if_eq}}
+  }{{/if_neq}}
 }
